@@ -1,0 +1,16 @@
+{
+  "name": "web113/sound_host",
+  "autoload": {
+    "psr-4": {
+      "App\\Src\\Core\\": "Src/Core",
+      "App\\Src\\Model\\": "Src/Model",
+      "App\\Src\\Controller\\": "Src/Controller"
+    }
+  },
+  "authors": [
+    {
+      "name": "yannick"
+    }
+  ],
+  "require": {}
+}
