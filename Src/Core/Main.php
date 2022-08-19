@@ -9,6 +9,8 @@ class Main
 
     public function start()
     {
+
+        session_start();
         if (empty($_GET['page'])) {
             require_once ROOT . "/Views/Home/home.php";
         } else {
@@ -22,12 +24,12 @@ class Main
 
                 header('location:' . $uri);
             }
-            var_dump($_GET);
+            // var_dump($_GET);
 
             /**
              * * je récupère 
              */
-            var_dump($uri);
+            // var_dump($uri);
             $params = explode("/", $_GET['page']);
 
             $controller = "App\\Src\\Controller\\" . ucfirst($params[0]) . "Controller";
@@ -36,10 +38,7 @@ class Main
                 $controller = new $controller;
                 $controller->index();
             } else {
-                $home = new HomeController();
-                $home->index();
-                $uri = explode($params[0], $uri);
-                header("location:" . $uri[0]);
+                echo "la page n'existe pas !";
             }
         }
     }

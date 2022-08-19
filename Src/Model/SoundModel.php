@@ -2,19 +2,21 @@
 
 namespace App\Src\Model;
 
-class SoundModel
+class SoundModel extends Models
 {
-    public function __construct(
-        private $id,
-        private $title,
-        private $image,
-        private $sound,
-        private $description,
-        private $releaseDate,
-        private $category
-    ) {
-    }
 
+    protected $id;
+    protected $title;
+    protected $image;
+    protected $sound;
+    protected $description;
+    protected $releaseDate;
+    protected $category;
+
+    public function __construct()
+    {
+        $this->table = 'sound';
+    }
     public function getId(): int
     {
         return $this->id;
@@ -23,6 +25,7 @@ class SoundModel
     public function setId(int $id)
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getTitle(): string
@@ -33,6 +36,7 @@ class SoundModel
     public function setTitle(string $title)
     {
         $this->title = $title;
+        return $this;
     }
 
     public function getImage(): string
@@ -43,6 +47,7 @@ class SoundModel
     public function setImage(string $image)
     {
         $this->image = $image;
+        return $this;
     }
 
     public function getSound(): string
@@ -53,6 +58,7 @@ class SoundModel
     public function setSound(string $sound)
     {
         $this->sound = $sound;
+        return $this;
     }
 
     public function getReleaseDate(): string
@@ -60,9 +66,10 @@ class SoundModel
         return $this->releaseDate;
     }
 
-    public function setReleaseDate(string $sound)
+    public function setReleaseDate($releaseDate)
     {
-        $this->sound = $sound;
+        $this->releaseDate = $releaseDate;
+        return $this;
     }
 
     public function getCategory(): int
@@ -73,6 +80,7 @@ class SoundModel
     public function setCategory(int $category)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
