@@ -18,12 +18,13 @@
         <div class="col-2 vh-100" style="background-color: #3a86ff;">
             <h2 class="text-white text-center py-2">
                 Admin
+
             </h2>
             <div class="bg-white m-auto" style="height: 1px; width:90%"></div>
             <div class="container mt-2">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a href="admin" class="nav-link active text-white text-center fw-bolder">
+                        <a href="<?= HEADER ?>admin" class="nav-link active text-white text-center fw-bolder">
                             <i class="fa-solid fa-gauge"></i>
                             Dashboard
                         </a>
@@ -44,9 +45,19 @@
             <div class="container mt-2">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a href="adminSound" class="nav-link active text-white active text-center text-uppercase ml-2">
+                        <a href="<?= HEADER ?>adminSound" class="nav-link active text-white active text-center text-uppercase ml-2">
                             <i class="fa-solid fa-headphones-simple"></i>
                             sound
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container mt-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="" class="nav-link active text-white active text-center text-uppercase ml-2">
+                            <i class="fa-brands fa-forumbee"></i>
+                            forum
                         </a>
                     </li>
                 </ul>

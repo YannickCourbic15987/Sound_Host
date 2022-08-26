@@ -19,29 +19,59 @@ abstract class Models extends Data
         return $request->fetchAll();
     }
 
-    public function findById($id)
+    public function findById()
     {
         $request = $this->getData()->prepare("SELECT * FROM $this->table WHERE id = ?");
-        $request->execute(array($id));
+        $request->execute(array($this->id));
 
         return $request->fetch();
     }
 
-    public function findByEmail(string $table, string $email)
+    public function findByEmail()
     {
-        $request = $this->getData()->prepare("SELECT * FROM $table where email = ?");
-        $request->execute(array($email));
-
+        $request = $this->getData()->prepare("SELECT * FROM $this->table where email = ?");
+        $request->execute(array($this->email));
         return $request->fetch();
     }
 
-    public function findByUsername(string $table, string $username)
+    public function findByUsername()
     {
-        $request = $this->getData()->prepare("SELECT * FROM $table where username = ?");
-        $request->execute(array($username));
+        $request = $this->getData()->prepare("SELECT * FROM $this->table where id_user = ?");
+        $request->execute(array($this->id_user));
 
         return $request->fetch();
     }
+
+    public function findByCategory()
+    {
+        $request = $this->getData()->prepare("SELECT * FROM $this->table where title = ?");
+        $request->execute(array($this->title));
+
+        return $request->fetch();
+    }
+
+    public function findByProfil()
+    {
+        $request = $this->getData()->prepare("SELECT * FROM $this->table where pseudo = ?");
+        $request->execute(array($this->pseudo));
+
+        return $request->fetch();
+    }
+    public function findBySubject()
+    {
+        $request = $this->getData()->prepare("SELECT * FROM $this->table where title = ?");
+        $request->execute(array($this->title));
+
+        return $request->fetch();
+    }
+    public function findByIdSubjectDetails()
+    {
+        $request = $this->getData()->prepare("SELECT * FROM $this->table where id_subjectDetails = ?");
+        $request->execute(array($this->id_subjectDetails));
+        return $request->fetchAll();
+    }
+
+
 
     //***CREATE ******* */
 
@@ -70,5 +100,32 @@ abstract class Models extends Data
     }
 
     //***UPDATE****/
+    public function update($id, $redirect)
+    {
 
+        $champs = [];
+        $values = [];
+        foreach ($this as $champ => $value) {
+            if ($value != null && $champ != 'table' && $champ != 'id') {
+                $champs[] =  $champ . "=" . "'" . "$value" . "'";
+                $values[] = $value;
+            }
+        }
+        $liste_champs = join(',', $champs);
+        if (!empty($liste_champs)) {
+
+            $request = $this->getData()->prepare("UPDATE $this->table SET " . $liste_champs . " WHERE id = $id");
+            $request->execute();
+            header("Location: " . HEADER . $redirect);
+        }
+    }
+
+
+    //**DELETE *****/
+
+    public function delete()
+    {
+        $request = $this->getData()->prepare("DELETE FROM `" . $this->table  . "` WHERE `id` = $this->id");
+        $request->execute();
+    }
 }

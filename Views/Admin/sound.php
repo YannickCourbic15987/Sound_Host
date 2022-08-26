@@ -48,31 +48,32 @@
                     <?= $sound->releaseDate ?>
                 </th>
                 <th>
-                    <form action="adminId" method="post">
-                        <input type="hidden" name="id" value="<?= $sound->id ?>">
-                        <input type="hidden" name="view" value="1">
+
+
+                    <a href="adminSound/<?= $sound->id ?>">
                         <button class="btn btn-warning">
-                            <a href="adminId">
-                                <i class="fa-solid fa-eye text-white fs-4 fw-lighter mt-1"></i>
-                            </a>
+                            <i class="fa-solid fa-eye text-white fs-4 fw-lighter mt-1"></i>
                         </button>
-                    </form>
+                    </a>
+
                 </th>
                 <th>
-                    <form action="adminUpdateSound" method="post">
-                        <input type="hidden" name="id" value="<?= $sound->id ?>">
-                        <input type="hidden" name="edit" value="1">
+
+                    <a href="adminUpdateSound/<?= $sound->id ?>">
                         <button class="btn btn-info">
-                            <a href="adminUpdateSound">
-                                <i class="fa-solid fa-pen-to-square text-white fs-4 fw-ligther mt-1"></i>
-                            </a>
+                            <i class="fa-solid fa-pen-to-square text-white fs-4 fw-ligther mt-1"></i>
                         </button>
-                    </form>
+                    </a>
+
                 </th>
                 <th>
-                    <button class="btn btn-danger">
-                        <i class="fa-solid fa-xmark text-white fs-4 fw-ligther mt-1"></i>
-                    </button>
+                    <form action="" method="post">
+                        <input type="hidden" name="delete" value=<?= $sound->id ?>>
+                        <button class="btn btn-danger" type="submit">
+                            <i class="fa-solid fa-xmark text-white fs-4 fw-ligther mt-1"></i>
+                        </button>
+                    </form>
+
                 </th>
 
             </tr>

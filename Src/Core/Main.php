@@ -36,7 +36,12 @@ class Main
 
             if (class_exists($controller)) {
                 $controller = new $controller;
-                $controller->index();
+                if (count($params) > 1) {
+                    call_user_func_array(array($controller, "display"), array($params[1]));
+                } else {
+
+                    $controller->index();
+                }
             } else {
                 echo "la page n'existe pas !";
             }

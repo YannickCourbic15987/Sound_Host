@@ -6,9 +6,9 @@
 
     <p class="text-info fw-bolder mt-2 fs-2 "> ID : <span class="text-black"><?= $sound->id ?></span></p>
     <p class="text-info fw-bolder mt-2 fs-2"> TITRE: <span class="text-black"><?= $sound->title ?></span></p>
-    <img src="../Image/<?= $sound->image ?>" alt="" weigth="250px" height="250px">
+    <img src="../../Image/<?= $sound->image ?>" alt="" weigth="250px" height="250px">
     <br>
-    <audio src="../Audio/<?= $sound->sound ?>" controls="true"></audio>
+    <audio src="../../Audio/<?= $sound->sound ?>" controls="true"></audio>
     <p><?= $sound->description ?></p>
 </div>
 

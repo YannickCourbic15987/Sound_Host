@@ -49,7 +49,7 @@ class AdminAddSoundController extends Controller
 
 
             $sounds->create();
-            header('Location:adminSound');
+            header('Location:' . HEADER . 'adminSound');
         }
 
         $this->render('Admin/addsound', []);

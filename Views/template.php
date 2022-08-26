@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2bb89bf154.js" crossorigin="anonymous"></script>
     <title>Sound Host -- <?= $title ?></title>
 </head>
 
@@ -22,19 +23,35 @@
             <div class="navbar-collapse collapse show" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="home">Home
+                        <a class="nav-link active" href="<?= HEADER ?>home">Home
                             <span class="visually-hidden">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link active" href="<?= HEADER ?>forum">Forum</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
+                    <?php if (!isset($_SESSION['connexion'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?= HEADER ?>register">Inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?= HEADER ?>sign">Connexion</a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item ">
+                            <a class="nav-link active " href="<?= HEADER ?>profil">profil</a>
+                        </li>
+                        <li class="nav-item ">
+
+                            <a href="<?= HEADER ?>logout" class="text-danger fs-2">
+                                <i class="fa-solid fa-right-from-bracket "></i>
+                            </a>
+
+                        </li>
+                    <?php endif ?>
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-sm-2" type="text" placeholder="Search">
@@ -47,7 +64,7 @@
 
         <?= $content ?>
     </div>
-    <footer class="bg-light text-center text-lg-start fixed-bottom">
+    <footer class="bg-light text-center text-lg-start static-bottom" style="margin-top : 73vh;">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2020 Copyright:
