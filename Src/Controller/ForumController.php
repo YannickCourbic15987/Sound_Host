@@ -100,24 +100,54 @@ class ForumController extends Controller
         }
         if (isset($_POST['update']) && !empty($_POST['update'])) {
             $_SESSION['update'] = 1;
+            $_SESSION['publication'] = $_POST['publication'];
         }
         // var_dump($_SESSION);
         if (
             isset($_POST['message_update'])
             && !empty($_POST['message_update'])
-            && isset($_POST['publication'])
-            && !empty($_POST['publication'])
+
         ) {
             $message_update = trim(htmlspecialchars($_POST['message_update']));
+
             $publication = $_POST['publication'];
-            var_dump($message_update);
-            // var_dump($_POST['publication']);
+
             $messageUpdate = new MessageModel();
             $messageUpdate->setPublication($publication);
             $messageUpdate->setText($message_update);
             $messageUpdate->updateMessage();
-            // unset($_SESSION['update']);
-            // header('Location:' . HEADER . "forum/$id");
+            $messageDetailsUpdate = new MessageDetailsModel();
+            $messageDetailsUpdate->setPublication($publication)
+                ->setText($message_update);
+            $messageDetailsUpdate->updateMessage();
+
+
+            unset($_SESSION['update']);
+            unset($_SESSION['publication']);
+            header('Location:' . HEADER . "forum/$id");
+        }
+
+        if (
+            isset($_POST['remove'])
+            && !empty($_POST['remove']
+                && isset($_POST['publication'])
+                && !empty($_POST['publication']))
+        ) {
+
+            $publicationRemove = $_POST['publication'];
+            $SelectMessageRemove = new MessageModel();
+            $SelectMessageRemove->setPublication($publicationRemove);
+            $Select = $SelectMessageRemove->selectMessage();
+            // var_dump($Select);
+            $id_message = $Select->id;
+            $SelectMessageRemove->setId($id_message);
+            $SelectMessageRemove->delete();
+            $SelectMessageDetailsRemove = new MessageDetailsModel();
+            $SelectMessageDetailsRemove->setPublication($publicationRemove);
+            $SelectDetails = $SelectMessageDetailsRemove->selectMessage();
+            $SelectMessageDetailsRemove->setId($SelectDetails->id);
+            $SelectMessageDetailsRemove->delete();
+            header('Location:' . HEADER . "forum/$id");
         }
 
 
@@ -126,7 +156,8 @@ class ForumController extends Controller
         $this->render("Forum/message", [
             'detail' => $detail,
             'message' => $message,
-            'pseudo' => $pseudo
+            'pseudo' => $pseudo,
+
 
         ]);
     }

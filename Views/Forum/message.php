@@ -21,7 +21,7 @@
                         <?php if (!isset($_SESSION['update'])) : ?>
                             <form action="" method="post">
                                 <input type="hidden" name="remove" id="remove" value="remove ">
-
+                                <input type="datetime" name="publication" id="publication" value="<?= $messages->publication ?>" class="d-none" />
                                 <button class="btn btn-danger">
                                     <i class="fa-solid fa-xmark "></i>
                                 </button>
@@ -29,6 +29,7 @@
 
                             <form action="" method="post">
                                 <input type="hidden" name="update" id="update" value="update ">
+                                <input type="datetime" name="publication" id="publication" value="<?= $messages->publication ?>" class="d-none" />
                                 <button type="submit" class="btn btn-warning">
                                     <i class="fa-solid fa-pen-clip"></i>
                                 </button>
@@ -40,16 +41,24 @@
                     <p class="text-white text-center py-2">
                         <?= $messages->text ?>
                     </p>
-                <?php else : ?>
-                    <form action="" method="post" class="form-group">
-                        <textarea rows="2" cols="2" class="form-control bg-info border border-info text-white" name="message_update" id="message_update">
-                        <?= $messages->text ?>
-                        </textarea>
-                        <input type="datetime" name="publication" id="publication" value="<?= $messages->publication ?>" />
+                <?php elseif ($messages->publication === $_SESSION['publication']) : ?>
+                    <form action="" method="post" class="form-group mb-5">
+
+                        <textarea rows="1" cols="1" class="form-control bg-info border border-info text-white" name="message_update" id="message_update">
+                                <?= $messages->text ?>
+                                </textarea>
+
+                        <input type="datetime" name="publication" id="publication" value="<?= $messages->publication ?>" class="d-none" />
                         <button type=" submit" class="btn btn-success mb-2">
                             <i class="fa-solid fa-check"></i>
                         </button>
                     </form>
+                <?php else : ?>
+
+                    <p class="text-white text-center py-2">
+                        <?= $messages->text ?>
+                    </p>
+
                 <?php endif ?>
             </div>
         <?php else : ?>

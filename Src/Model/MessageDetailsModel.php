@@ -2,6 +2,8 @@
 
 namespace App\Src\Model;
 
+use DateTime;
+
 class MessageDetailsModel extends Models
 {
     protected $id;
@@ -11,6 +13,7 @@ class MessageDetailsModel extends Models
     protected $text;
     protected $publication;
     protected $id_subjectDetails;
+    protected $id_message;
 
     public function __construct()
     {
@@ -66,7 +69,7 @@ class MessageDetailsModel extends Models
     {
         return $this->publication;
     }
-    public function setPublication(string $publication)
+    public function setPublication($publication)
     {
         $this->publication = $publication;
         return $this;
@@ -81,6 +84,16 @@ class MessageDetailsModel extends Models
     {
 
         $this->id_subjectDetails = $id_subjectDetails;
-        return $id_subjectDetails;
+        return $this;
+    }
+
+    public function getIdMessage()
+    {
+        return $this->id_message;
+    }
+    public function setIdMessage(int $id_message)
+    {
+        $this->id_message = $id_message;
+        return $this;
     }
 }

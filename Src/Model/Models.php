@@ -103,10 +103,10 @@ abstract class Models extends Data
     public function updateMessage()
     {
 
-        $request = $this->getData()->prepare('UPDATE ' . $this->table . ' SET text = ' . "'$this->text'" . ' WHERE publication = ' . $this->publication);
+        $request = $this->getData()->prepare('UPDATE ' . $this->table . ' SET text = ' . "'$this->text'" . ' WHERE publication = ?');
         // var_dump($request);
         // var_dump($values);
-        $request->execute();
+        $request->execute(array($this->publication));
     }
 
 
@@ -116,5 +116,15 @@ abstract class Models extends Data
     {
         $request = $this->getData()->prepare("DELETE FROM `" . $this->table  . "` WHERE `id` = $this->id");
         $request->execute();
+    }
+
+
+
+    //**SELECT */
+    public function selectMessage()
+    {
+        $request = $this->getData()->prepare("SELECT * FROM $this->table  WHERE " .  "publication = '" . $this->publication . "'");
+        $request->execute();
+        return $request->fetch();
     }
 }
