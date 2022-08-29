@@ -100,24 +100,13 @@ abstract class Models extends Data
     }
 
     //***UPDATE****/
-    public function update($id, $redirect)
+    public function updateMessage()
     {
 
-        $champs = [];
-        $values = [];
-        foreach ($this as $champ => $value) {
-            if ($value != null && $champ != 'table' && $champ != 'id') {
-                $champs[] =  $champ . "=" . "'" . "$value" . "'";
-                $values[] = $value;
-            }
-        }
-        $liste_champs = join(',', $champs);
-        if (!empty($liste_champs)) {
-
-            $request = $this->getData()->prepare("UPDATE $this->table SET " . $liste_champs . " WHERE id = $id");
-            $request->execute();
-            header("Location: " . HEADER . $redirect);
-        }
+        $request = $this->getData()->prepare('UPDATE ' . $this->table . ' SET text = ' . "'$this->text'" . ' WHERE publication = ' . $this->publication);
+        // var_dump($request);
+        // var_dump($values);
+        $request->execute();
     }
 
 

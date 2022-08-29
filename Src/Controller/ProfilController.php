@@ -49,6 +49,7 @@ class ProfilController extends Controller
 
             $_SESSION['id_profil'] = $profil->id;
         } else {
+
             $_SESSION['pseudo_tmp'] = time() . rand() . rand();
         }
 

@@ -39,6 +39,7 @@ class ForumController extends Controller
 
     public function display($id)
     {
+
         $messageDetails = new MessageDetailsModel();
         $messageDetails->setIdSubjectDetails($id);
         $message = $messageDetails->findByIdSubjectDetails();
@@ -55,8 +56,10 @@ class ForumController extends Controller
             $profils->setId($_SESSION['id_profil']);
             $profil = $profils->findById();
             $idProfil = $profil->id;
+            $pseudo = $profil->pseudo;
         } else {
             $idProfil = null;
+            $pseudo = null;
         }
         $Subjects = new SubjectModel();
         $Subjects->setTitle($detail->title);
@@ -93,16 +96,37 @@ class ForumController extends Controller
                 $messageDetails->create();
                 $_SESSION['hidden_img'] = 1;
             }
-
-
-
-
-
             header('Location:' . HEADER . "forum/$id");
         }
+        if (isset($_POST['update']) && !empty($_POST['update'])) {
+            $_SESSION['update'] = 1;
+        }
+        // var_dump($_SESSION);
+        if (
+            isset($_POST['message_update'])
+            && !empty($_POST['message_update'])
+            && isset($_POST['publication'])
+            && !empty($_POST['publication'])
+        ) {
+            $message_update = trim(htmlspecialchars($_POST['message_update']));
+            $publication = $_POST['publication'];
+            var_dump($message_update);
+            // var_dump($_POST['publication']);
+            $messageUpdate = new MessageModel();
+            $messageUpdate->setPublication($publication);
+            $messageUpdate->setText($message_update);
+            $messageUpdate->updateMessage();
+            // unset($_SESSION['update']);
+            // header('Location:' . HEADER . "forum/$id");
+        }
+
+
+
+
         $this->render("Forum/message", [
             'detail' => $detail,
-            'message' => $message
+            'message' => $message,
+            'pseudo' => $pseudo
 
         ]);
     }

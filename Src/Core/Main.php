@@ -31,12 +31,12 @@ class Main
              */
             // var_dump($uri);
             $params = explode("/", $_GET['page']);
-
             $controller = "App\\Src\\Controller\\" . ucfirst($params[0]) . "Controller";
 
             if (class_exists($controller)) {
                 $controller = new $controller;
                 if (count($params) > 1) {
+
                     call_user_func_array(array($controller, "display"), array($params[1]));
                 } else {
 

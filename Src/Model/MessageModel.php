@@ -77,7 +77,7 @@ class MessageModel extends Models
         return $this->publication;
     }
 
-    public function setPublication(DateTime $publication)
+    public function setPublication($publication)
     {
         $this->publication = $publication;
         return $this;
