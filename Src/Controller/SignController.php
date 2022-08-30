@@ -23,6 +23,7 @@ class SignController extends Controller
                 if (password_verify($password, $users->password)) {
                     $_SESSION['connexion'] = 'vous êtes connecté avec succès';
                     $_SESSION['email'] = $user->getEmail();
+
                     // $_SESSION['id'] = $user->getId();
 
                     header('Location:' . HEADER . 'profil');

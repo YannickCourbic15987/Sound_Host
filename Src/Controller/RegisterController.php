@@ -44,7 +44,9 @@ class RegisterController extends Controller
                                 ->setLastname($lastname)
                                 ->setEmail($email)
                                 ->setPassword(password_hash($password, PASSWORD_ARGON2I));
+                            $user->setRole('user');
                             $user->create();
+
 
                             $_SESSION['success'] = "Vous vous êtes inscrit avec succès.";
 

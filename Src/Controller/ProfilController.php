@@ -15,6 +15,7 @@ class ProfilController extends Controller
         $user->setEmail($_SESSION['email']);
         $users = $user->findByEmail();
         $_SESSION['id'] = $users->id;
+        $_SESSION['role'] = $users->role;
         $profils = new ProfilModel();
         if (
             isset($_POST['pseudo'])

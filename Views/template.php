@@ -37,19 +37,25 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="<?= HEADER ?>sign">Connexion</a>
                         </li>
+
                     <?php else : ?>
                         <li class="nav-item ">
                             <a class="nav-link active " href="<?= HEADER ?>profil">profil</a>
                         </li>
                         <li class="nav-item ">
-
-                            <a href="<?= HEADER ?>logout" class="text-danger fs-2">
-                                <i class="fa-solid fa-right-from-bracket "></i>
-                            </a>
-
+                            <?php if (isset($_SESSION['connexion']) && $_SESSION['role'] === "admin") : ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?= HEADER ?>admin">Admin</a>
                         </li>
                     <?php endif ?>
-                    <!-- <li class="nav-item">
+
+                    <a href="<?= HEADER ?>logout" class="text-danger fs-2" role="button">
+                        <i class="fa-solid fa-right-from-bracket "></i>
+                    </a>
+
+                    </li>
+                <?php endif ?>
+                <!-- <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
                     </li> -->
                 </ul>
