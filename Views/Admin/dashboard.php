@@ -10,12 +10,12 @@
     <title>Sound Host -- Admin</title>
 </head>
 
-<body class="overflow-hidden">
+<body>
     <div class="row">
 
 
 
-        <div class="col-2 vh-100" style="background-color: #3a86ff;">
+        <div class="col-2 " style="background-color: #3a86ff; min-height:100vh">
             <h2 class="text-white text-center py-2">
                 Admin
 
@@ -62,10 +62,20 @@
                     </li>
                 </ul>
             </div>
+            <div class="container mt-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="<?= HEADER ?>adminLibrary" class="nav-link active text-white active text-center text-uppercase ml-2">
+                            <i class="fa-solid fa-book"></i>
+                            librarie
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div class="bg-white m-auto mt-2" style="height: 1px; width:100%"></div>
         </div>
 
-        <div class="col-10">
+        <div class="col-10 ">
             <!-- As a link -->
             <nav class="navbar bg-light navbar-collapse">
 
@@ -79,10 +89,13 @@
             </nav>
 
 
+            <div class="container">
 
-            <?php if (isset($content)) {
-                echo $content;
-            } ?>
+
+                <?php if (isset($content)) {
+                    echo $content;
+                } ?>
+            </div>
         </div>
     </div>
 

@@ -106,7 +106,7 @@ class LibraryModel extends Models
     /**
      * Set the value of price
      */
-    public function setPrice($price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
