@@ -30,6 +30,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="<?= HEADER ?>forum">Forum</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<?= HEADER ?>library">Library</a>
+                    </li>
                     <?php if (!isset($_SESSION['connexion'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link active" href="<?= HEADER ?>register">Inscription</a>
@@ -38,9 +41,10 @@
                             <a class="nav-link active" href="<?= HEADER ?>sign">Connexion</a>
                         </li>
 
+
                     <?php else : ?>
                         <li class="nav-item ">
-                            <a class="nav-link active " href="<?= HEADER ?>profil">profil</a>
+                            <a class="nav-link active " href="<?= HEADER ?>profil">Profil</a>
                         </li>
                         <li class="nav-item ">
                             <?php if (isset($_SESSION['connexion']) && $_SESSION['role'] === "admin") : ?>
