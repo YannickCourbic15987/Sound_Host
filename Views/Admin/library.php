@@ -49,7 +49,7 @@
                     <th>
 
 
-                        <a href="">
+                        <a href="<?= HEADER ?>adminLibrary/<?= $library->id ?>">
                             <button class="btn btn-warning">
                                 <i class="fa-solid fa-eye text-white fs-4 fw-lighter mt-1"></i>
                             </button>

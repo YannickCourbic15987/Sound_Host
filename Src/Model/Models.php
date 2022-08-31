@@ -50,6 +50,22 @@ abstract class Models extends Data
         return $request->fetch();
     }
 
+    public function findByCategory2()
+    {
+        $request = $this->getData()->prepare("SELECT * FROM $this->table where id = ?");
+        $request->execute(array($this->id));
+
+        return $request->fetch();
+    }
+
+    public function findByEditeur()
+    {
+        $request = $this->getData()->prepare("SELECT * FROM $this->table where id = ?");
+        $request->execute(array($this->id));
+
+        return $request->fetch();
+    }
+
     public function findByProfil()
     {
         $request = $this->getData()->prepare("SELECT * FROM $this->table where pseudo = ?");

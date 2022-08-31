@@ -2,6 +2,8 @@
 
 namespace App\Src\Controller;
 
+use App\Src\Model\CategoryModel;
+use App\Src\Model\EditionModel;
 use App\Src\Model\LibraryModel;
 
 class AdminLibraryController extends Controller
@@ -69,11 +71,28 @@ class AdminLibraryController extends Controller
         $library = new LibraryModel();
         $libraries = $library->findAll();
 
-
-
-
-
-
         $this->render("Admin/library", ['libraries' => $libraries]);
+    }
+
+    public function display($id)
+    {
+        $library = new LibraryModel();
+        $library->setId($id);
+        $librairie = $library->findById();
+        $category = new CategoryModel();
+        $category->setId($librairie->id_category);
+        $categorie = $category->findByCategory2();
+        $editeur = new EditionModel();
+        $edit = $editeur->setId($librairie->id_edition);
+
+
+
+
+
+        $this->render("Admin/viewlibrary", [
+            "librairie" => $librairie,
+            "categorie" => $categorie,
+            "edit" => $edit
+        ]);
     }
 }
