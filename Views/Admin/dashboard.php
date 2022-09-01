@@ -72,6 +72,16 @@
                     </li>
                 </ul>
             </div>
+            <div class="container mt-2">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="<?= HEADER ?>adminCategory" class="nav-link active text-white active text-center text-uppercase ml-2">
+                            <i class="fa-solid fa-list"></i>
+                            Category
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div class="bg-white m-auto mt-2" style="height: 1px; width:100%"></div>
         </div>
 

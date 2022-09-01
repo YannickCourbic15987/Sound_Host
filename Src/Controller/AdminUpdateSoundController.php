@@ -51,8 +51,8 @@ class AdminUpdateSoundController extends Controller
                     }
                 }
             }
+            $sounds->update();
         };
-        $sounds->update($id, "adminSound");
 
 
 

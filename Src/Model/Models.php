@@ -125,6 +125,23 @@ abstract class Models extends Data
         $request->execute(array($this->publication));
     }
 
+    public function update()
+    {
+        $champs = [];
+        $values = [];
+
+        foreach ($this as $champ => $value) {
+            if ($value != null && $champ != 'table' && $champ != 'id') {
+                $champs[] = $champ . "= ?";
+                $values[] = $value;
+            }
+        }
+        $liste_champs = join(' , ', $champs);
+        $request = $this->getData()->prepare('UPDATE ' . $this->table . ' SET ' . $liste_champs . ' WHERE id = ' . $this->id);
+        $request->execute($values);
+        // var_dump($request);
+    }
+
 
     //**DELETE *****/
 

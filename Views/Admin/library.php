@@ -58,16 +58,18 @@
                     </th>
                     <th>
 
-                        <a href="">
-                            <button class="btn btn-info">
+
+                        <form action="<?= HEADER ?>adminLibrary/<?= $library->id ?>" method="post">
+                            <input type="hidden" name="update" value="update">
+                            <button class="btn btn-info" type="submit">
                                 <i class="fa-solid fa-pen-to-square text-white fs-4 fw-ligther mt-1"></i>
                             </button>
-                        </a>
+                        </form>
 
                     </th>
                     <th>
-                        <form action="" method="post">
-                            <input type="hidden" name="delete" value="">
+                        <form action="<?= HEADER ?>adminLibrary/<?= $library->id ?>" method="post">
+                            <input type="hidden" name="delete" value="delete">
                             <button class="btn btn-danger" type="submit">
                                 <i class="fa-solid fa-xmark text-white fs-4 fw-ligther mt-1"></i>
                             </button>
@@ -106,19 +108,19 @@
             <option selected>
                 Catégorie
             </option>
-            <option value="1">html</option>
-            <option value="2">css</option>
-            <option value="3">javascript</option>
-            <option value="4">php</option>
+            <?php foreach ($categories as $champ => $categorie) : ?>
+
+                <option value="<?= $categorie->id ?>"><?= $categorie->title ?></option>
+            <?php endforeach ?>
         </select>
         <select name="editeur" id="editeur" class="form-control mb-3">
             <option selected>
                 Editeur
             </option>
-            <option value="1">Hachette</option>
-            <option value="2">Belin Education</option>
-            <option value="3">Nathan</option>
-            <option value="4">Hatier</option>
+            <?php foreach ($editeurs as $champ => $editeur) : ?>
+
+                <option value="<?= $editeur->id ?>"><?= $editeur->title ?></option>
+            <?php endforeach ?>
         </select>
         <label for="price" class="form-label">Price</label>
         <input type="text" name="price" id="price" class="form-control">

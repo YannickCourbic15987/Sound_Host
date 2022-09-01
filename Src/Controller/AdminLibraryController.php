@@ -14,6 +14,11 @@ class AdminLibraryController extends Controller
             $_SESSION['ajouter'] = 1;
         }
 
+        $categorie = new CategoryModel();
+        $categories = $categorie->findAll();
+        $editeur = new EditionModel();
+        $editeurs = $editeur->findAll();
+
         if (
             !empty($_FILES['picture']['name'])
             && isset($_FILES['picture']['name'])
@@ -67,11 +72,53 @@ class AdminLibraryController extends Controller
                 unset($_SESSION['ajouter']);
                 header('Location:' . HEADER . 'adminLibrary');
             }
-        }
-        $library = new LibraryModel();
-        $libraries = $library->findAll();
+        } else {
+            $sourceImg = "book.png";
+            if (
+                !empty($_POST['title'])
+                && isset($_POST['title'])
+                && !empty($_POST['description'])
+                && isset($_POST['description'])
+                && !empty($_POST['publication'])
+                && isset($_POST['publication'])
+                && !empty($_POST['editeur'])
+                && isset($_POST['editeur'])
+                && !empty($_POST['category'])
+                && isset($_POST['category'])
+                && !empty($_POST['price'])
+                && isset($_POST['price'])
+            ) {
 
-        $this->render("Admin/library", ['libraries' => $libraries]);
+                $title = trim(htmlspecialchars($_POST['title']));
+                $description = trim(htmlspecialchars($_POST['description']));
+                $publication = trim(htmlspecialchars($_POST['publication']));
+                $editeur = trim(htmlspecialchars($_POST['editeur']));
+                $category = trim(htmlspecialchars($_POST['category']));
+                $price = trim(htmlspecialchars($_POST['price']));
+
+                $library = new LibraryModel();
+                $library->setTitle($title)
+                    ->setDescription($description)
+                    ->setPicture($sourceImg)
+                    ->setPublication($publication)
+                    ->setIdCategory($category)
+                    ->setIdEdition($editeur)
+                    ->setPrice($price);
+                $library->create();
+
+                unset($_SESSION['ajouter']);
+                header('Location:' . HEADER . 'adminLibrary');
+            }
+            $library = new LibraryModel();
+            $libraries = $library->findAll();
+
+
+            $this->render("Admin/library", [
+                'libraries' => $libraries,
+                'categories' => $categories,
+                'editeurs' => $editeurs
+            ]);
+        }
     }
 
     public function display($id)
@@ -82,17 +129,72 @@ class AdminLibraryController extends Controller
         $category = new CategoryModel();
         $category->setId($librairie->id_category);
         $categorie = $category->findByCategory2();
+        $categories = $category->findAll();
         $editeur = new EditionModel();
-        $edit = $editeur->setId($librairie->id_edition);
+        $editeur->setId($librairie->id_edition);
+        $edit = $editeur->findById();
+        $editeurs = $editeur->findAll();
 
 
+
+
+        if (isset($_POST['update']) && !empty($_POST['update'])) {
+            $_SESSION['update'] = 1;
+        }
+
+        if (
+            !empty($_POST['title'])
+            && isset($_POST['title'])
+            && !empty($_POST['description'])
+            && isset($_POST['description'])
+            && !empty($_POST['publication'])
+            && isset($_POST['publication'])
+            && !empty($_POST['editeur'])
+            && isset($_POST['editeur'])
+            && !empty($_POST['category'])
+            && isset($_POST['category'])
+            && !empty($_POST['price'])
+            && isset($_POST['price'])
+            && $_SESSION['update']
+        ) {
+
+
+            $title = trim(htmlspecialchars($_POST['title']));
+            $description = trim(htmlspecialchars($_POST['description']));
+            $publication = trim(htmlspecialchars($_POST['publication']));
+            $editeur = trim(htmlspecialchars($_POST['editeur']));
+            $category = trim(htmlspecialchars($_POST['category']));
+            $price = trim(htmlspecialchars($_POST['price']));
+
+            $library = new LibraryModel();
+            $library->setTitle($title)
+                ->setId($id)
+                ->setDescription($description)
+                ->setPublication($publication)
+                ->setIdCategory($category)
+                ->setIdEdition($editeur)
+                ->setPrice($price);
+            $library->update();
+            unset($_SESSION['update']);
+            header('Location:' . HEADER . "adminLibrary");
+        }
+
+
+        if (isset($_POST['delete']) && !empty($_POST['delete'])) {
+            $library = new LibraryModel();
+            $library->setId($id);
+            $library->delete();
+            header('Location:' . HEADER . "adminLibrary");
+        }
 
 
 
         $this->render("Admin/viewlibrary", [
             "librairie" => $librairie,
             "categorie" => $categorie,
-            "edit" => $edit
+            "categories" => $categories,
+            "edit" => $edit,
+            "editeurs" => $editeurs
         ]);
     }
 }
