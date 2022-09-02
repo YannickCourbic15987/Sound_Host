@@ -14,4 +14,10 @@ class AdminCategoryController extends Controller
 
         $this->render("Admin/category", ["categorys" => $categorys]);
     }
+
+
+    public function display($id)
+    {
+        $this->render("Admin/updatecategory", []);
+    }
 }

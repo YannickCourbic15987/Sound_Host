@@ -6,6 +6,7 @@ class CategoryModel extends Models
 {
     protected $id;
     protected $title;
+    protected $logo;
     public function __construct()
     {
         $this->table = 'category';
@@ -30,6 +31,17 @@ class CategoryModel extends Models
     public function setTitle(string $title)
     {
         $this->title = $title;
+        return $this;
+    }
+
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo)
+    {
+        $this->logo = $logo;
         return $this;
     }
 }

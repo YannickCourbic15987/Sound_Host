@@ -25,7 +25,7 @@
 
 
                 <th>
-                    <form action="<?= HEADER ?>" method="post">
+                    <form action="<?= HEADER ?>adminCategory/<?= $category->id ?>  " method="post">
                         <input type="hidden" name="update" value="update">
                         <button class="btn btn-info" type="submit">
                             <i class="fa-solid fa-pen-to-square text-white fs-4 fw-ligther mt-1"></i>
