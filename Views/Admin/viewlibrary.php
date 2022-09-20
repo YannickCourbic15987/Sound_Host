@@ -68,6 +68,10 @@
             <input type="text" name="price" id="price" class="form-control">
             <input type="submit" value="envoyer" class="btn btn-primary mt-2">
         </form>
+
+        <form action="" method="post" class="form-group">
+            <input type="submit" value="retour" name="retour" class="btn btn-success mt-2">
+        </form>
     <?php endif ?>
 </div>
 <?php $content = ob_get_clean();

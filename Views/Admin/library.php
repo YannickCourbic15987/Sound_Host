@@ -90,6 +90,8 @@
             <i class="fa-solid fa-book-medical text-white fs-4 fw-ligther mt-1 text-uppercase"> ajouter</i>
         </button>
     </form>
+
+
 <?php else : ?>
 
     <div class="d-flex justify-content-center">
@@ -125,6 +127,11 @@
         <label for="price" class="form-label">Price</label>
         <input type="text" name="price" id="price" class="form-control">
         <input type="submit" value="envoyer" class="btn btn-primary mt-2">
+    </form>
+
+    <form action="" method="post" class="mt-2">
+        <input type="hidden" name="retour" value="retour">
+        <input type="submit" value="retour" class="btn btn-success ">
     </form>
 <?php endif ?>
 <?php $content = ob_get_clean();

@@ -6,6 +6,7 @@ class EditionModel extends Models
 {
     protected $id;
     protected $title;
+    protected $logo;
 
     public function __construct()
     {
@@ -31,6 +32,16 @@ class EditionModel extends Models
     public function setTitle(string $title)
     {
         $this->title = $title;
+        return $this;
+    }
+
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+    public function setLogo(string $logo)
+    {
+        $this->logo = $logo;
         return $this;
     }
 }

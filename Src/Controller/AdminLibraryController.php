@@ -10,6 +10,11 @@ class AdminLibraryController extends Controller
 {
     public function index()
     {
+        if (isset($_POST['retour']) && !empty($_POST['retour'])) {
+            unset($_SESSION['ajouter']);
+            header('Location:' . HEADER . 'adminLibrary');
+        }
+
         if (isset($_POST['ajouter']) && !empty($_POST['ajouter'])) {
             $_SESSION['ajouter'] = 1;
         }
@@ -141,7 +146,9 @@ class AdminLibraryController extends Controller
         if (isset($_POST['update']) && !empty($_POST['update'])) {
             $_SESSION['update'] = 1;
         }
-
+        if (isset($_POST['retour']) && !empty($_POST['retour'])) {
+            unset($_SESSION['update']);
+        }
         if (
             !empty($_POST['title'])
             && isset($_POST['title'])
